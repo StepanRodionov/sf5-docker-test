@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+
+    nginx:
+        build: # Configuration options that are applied at build time
+            context: . # Either a path to a directory containing a Dockerfile, or a url to a git repository.
+            dockerfile: Dockerfile-nginx
+        volumes: # will establish that our local folder called symfony will be linked to the /var/www/symfony folder of the container
+            - ./symfony/:/var/www/symfony/
+        ports: # performs mapping between port 80 of the container and port 8001 that we will use to access through the browser
+            - 8001:80
+        networks:
+            - symfony
+
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile-php
+        environment:
+            APP_ENV: dev
+        volumes:
+            - ./symfony/:/var/www/symfony/
+        networks:
+            - symfony
+
+networks: # establish a network for the entire project so that all containers can communicate with each other
+    symfony:
