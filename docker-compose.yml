@@ -17,7 +17,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile-php
-        environment:
+        environment: # environment variables that we want our Symfony project to read and load later
             APP_ENV: dev
         volumes:
             - ./symfony/:/var/www/symfony/
