@@ -1,13 +1,16 @@
 version: '3.7'
+# nginx, php-fpm, memcached, postgres
 
 services:
 
     nginx:
+        image: nginx:1.17.7
         build: # Configuration options that are applied at build time
-            context: . # Either a path to a directory containing a Dockerfile, or a url to a git repository.
-            dockerfile: Dockerfile-nginx
+            context: ./build/nginx/ # Either a path to a directory containing a Dockerfile, or a url to a git repository.
+            dockerfile: Dockerfile
         volumes: # will establish that our local folder called symfony will be linked to the /var/www/symfony folder of the container
             - ./symfony/:/var/www/symfony/
+            - ./build/nginx/default.conf /etc/nginx/conf.d/
         ports: # performs mapping between port 80 of the container and port 8001 that we will use to access through the browser
             - 8001:80
         networks:
@@ -15,8 +18,8 @@ services:
 
     php:
         build:
-            context: .
-            dockerfile: Dockerfile-php
+            context: ./build/php-fpm/
+            dockerfile: Dockerfile
         environment: # environment variables that we want our Symfony project to read and load later
             APP_ENV: dev
         volumes:
@@ -24,22 +27,17 @@ services:
         networks:
             - symfony
         depends_on:
-            - mysql
+            - postgres
+            - memcached
 
-    mysql:
-      image: mysql
-      command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--default-authentication-plugin=mysql_native_password']
-      environment:
-        MYSQL_DATABASE: symfony
-        MYSQL_USER: symfony
-        MYSQL_PASSWORD: secret1S
-        MYSQL_ROOT_PASSWORD: root
-      ports:
-        - 3306:3306
-      volumes:
-          - ./mysql/:/var/lib/mysql/
-      networks:
-          - symfony
+    memcached:
+        image: memcached:1.5.20
+        networks:
+            - symfony
+    postgres:
+        image: postgres:12.1
+        networks:
+            - symfony
 
 networks: # establish a network for the entire project so that all containers can communicate with each other
     symfony:
