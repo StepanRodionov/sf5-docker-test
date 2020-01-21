@@ -1,0 +1,13 @@
+version: '3.7'
+
+services: # containers, same as docker run
+  service_name: # a friendly name and also DNS name inside network
+    image: # optional if you use build
+    command: # optional, replace the default CMD specified by the image
+    environment: # optional, same as -e in docker run
+    volumes: # optional, same as -v in docker run
+  service_name2:
+
+volumes: # optional, same as docker volume create
+
+networks: # optional, same as docker network create

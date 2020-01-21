@@ -4,25 +4,23 @@ version: '3.7'
 services:
 
     nginx:
+        container_name: nginx
         image: nginx:1.17.7
         restart: on-failure
-        build: # Configuration options that are applied at build time
-            context: # Either a path to a directory containing a Dockerfile, or a url to a git repository.
-            dockerfile: Dockerfile
-        volumes: # will establish that our local folder called symfony will be linked to the /var/www/symfony folder of the container
+        volumes:
             - ./symfony/:/var/www/symfony/
             - ./build/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-        ports: # performs mapping between port 80 of the container and port 8001 that we will use to access through the browser
+        ports:
             - 8001:80
         networks:
             - symfony
 
     php:
-        build:
-            context: ./build/php-fpm/
-            dockerfile: Dockerfile
+        container_name: php
+        build: ./build/php/
+        image: php:home
         restart: on-failure
-        environment: # environment variables that we want our Symfony project to read and load later
+        environment:
             APP_ENV: dev
         volumes:
             - ./symfony/:/var/www/symfony/
@@ -33,16 +31,24 @@ services:
             - memcached
 
     memcached:
+        container_name: memcached
         image: memcached:1.5.20
         restart: on-failure
         networks:
             - symfony
 
     postgres:
-        image: postgres:12.1
+        container_name: postgres
+        build: ./build/postgres/
+        image: postgres:home
         restart: on-failure
+        ports:
+          - '5432:5432'
+        environment:
+          - POSTGRES_PASSWORD=secret1S # superuser password
         networks:
             - symfony
 
-networks: # establish a network for the entire project so that all containers can communicate with each other
+networks:
     symfony:
+      name: symfony
