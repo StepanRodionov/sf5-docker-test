@@ -5,12 +5,13 @@ services:
 
     nginx:
         image: nginx:1.17.7
+        restart: on-failure
         build: # Configuration options that are applied at build time
-            context: ./build/nginx/ # Either a path to a directory containing a Dockerfile, or a url to a git repository.
+            context: # Either a path to a directory containing a Dockerfile, or a url to a git repository.
             dockerfile: Dockerfile
         volumes: # will establish that our local folder called symfony will be linked to the /var/www/symfony folder of the container
             - ./symfony/:/var/www/symfony/
-            - ./build/nginx/default.conf /etc/nginx/conf.d/
+            - ./build/nginx/default.conf:/etc/nginx/conf.d/
         ports: # performs mapping between port 80 of the container and port 8001 that we will use to access through the browser
             - 8001:80
         networks:
@@ -20,6 +21,7 @@ services:
         build:
             context: ./build/php-fpm/
             dockerfile: Dockerfile
+        restart: on-failure
         environment: # environment variables that we want our Symfony project to read and load later
             APP_ENV: dev
         volumes:
@@ -32,10 +34,13 @@ services:
 
     memcached:
         image: memcached:1.5.20
+        restart: on-failure
         networks:
             - symfony
+
     postgres:
         image: postgres:12.1
+        restart: on-failure
         networks:
             - symfony
 
