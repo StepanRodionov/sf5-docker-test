@@ -11,7 +11,7 @@ services:
             dockerfile: Dockerfile
         volumes: # will establish that our local folder called symfony will be linked to the /var/www/symfony folder of the container
             - ./symfony/:/var/www/symfony/
-            - ./build/nginx/default.conf:/etc/nginx/conf.d/
+            - ./build/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
         ports: # performs mapping between port 80 of the container and port 8001 that we will use to access through the browser
             - 8001:80
         networks:
