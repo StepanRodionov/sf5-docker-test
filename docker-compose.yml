@@ -42,8 +42,6 @@ services:
         build: ./docker/postgres/
         image: postgres:home
         restart: on-failure
-        ports:
-          - ${DOCKER_POSTGRES_PORT}:5432
         environment:
           - POSTGRES_PASSWORD=${DOCKER_POSTGRES_PASSWORD} # superuser password
           - PROJECT_DB_NAME=${DOCKER_POSTGRES_PROJECT_DB_NAME}
