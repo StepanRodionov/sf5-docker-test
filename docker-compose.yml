@@ -22,6 +22,8 @@ services:
         restart: on-failure
         environment:
             APP_ENV: dev
+            XDEBUG_CONFIG: "remote_host=192.168.220.1 remote_enable=1 remote_autostart=1 remote_port=9001"
+            PHP_IDE_CONFIG: "serverName=Docker"
         volumes:
             - ./:/var/www/symfony/
         networks:
@@ -53,3 +55,8 @@ services:
 networks:
     symfony-network:
       name: symfony-network
+      driver: bridge
+      ipam:
+        driver: default
+        config:
+          - subnet: 192.168.220.0/28
