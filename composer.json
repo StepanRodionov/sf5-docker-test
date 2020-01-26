@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "doctrine/annotations": "^1.8",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/doctrine-migrations-bundle": "^2.0",
@@ -94,13 +95,5 @@
             "allow-contrib": false,
             "require": "^5.0"
         }
-    },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git@gitlab.com:sberlogistic/php/editorconfig.git",
-            "reference": "master"
-        }
-    ]
-
+    }
 }

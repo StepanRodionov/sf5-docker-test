@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\DependencyInjection\Compiler;
 
-use App\Service\ApiService;
+use App\Service\Api\ApiService;
 use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

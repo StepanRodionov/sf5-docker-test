@@ -12,16 +12,13 @@ class WelcomeController extends AbstractController
      */
     public function index()
     {
-        $s = $_SERVER;
-        phpinfo();
-
         $em = $this->getDoctrine()->getManager();
         $em->getConnection()->connect();
         $connected = $em->getConnection()->isConnected();
 
-        //phpinfo();
         //dump($connected);
-        //die;
+        phpinfo();
+        die;
 
         return $this->render(
             'welcome/index.html.twig',
