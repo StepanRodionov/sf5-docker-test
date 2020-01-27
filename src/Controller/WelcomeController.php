@@ -16,7 +16,11 @@ class WelcomeController extends AbstractController
         $em->getConnection()->connect();
         $connected = $em->getConnection()->isConnected();
 
-        //dump($connected);
+        /**
+         * Set mapping in File/Settings/PHP/Servers
+         * Add breakpoint to the next line
+         */
+        dump($connected);
         phpinfo();
         die;
 
