@@ -22,7 +22,7 @@ services:
         restart: on-failure
         environment:
             APP_ENV: dev
-            XDEBUG_CONFIG: "remote_host=host.docker.symfony-network remote_enable=1 remote_autostart=1 remote_handler=\"dbgp\"  remote_port=9000"
+            #XDEBUG_CONFIG: "remote_host=host.docker.symfony-network remote_enable=1 remote_autostart=1 remote_handler=\"dbgp\"  remote_port=9000"
         volumes:
             - ./:/var/www/symfony/
         networks:

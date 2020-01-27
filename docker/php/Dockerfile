@@ -18,5 +18,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         pgsql pdo pdo_pgsql
 
 ADD ./php.ini /usr/local/etc/php/php.ini
+COPY conf.d/                        /usr/local/etc/php/conf.d
 
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/getcomposer
