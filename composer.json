@@ -11,6 +11,7 @@
         "doctrine/doctrine-migrations-bundle": "^2.0",
         "doctrine/orm": "^2.7",
         "phpdocumentor/reflection-docblock": "^4.0",
+        "sberlogistic/editorconfig": "^1.0",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/asset": "^5.0",
         "symfony/console": "^5.0",
@@ -95,5 +96,12 @@
             "allow-contrib": false,
             "require": "^5.0"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "ssh://git@gitlab.sblogistica.ru:7999/sberlogistic/php/editorconfig.git",
+            "reference": "master"
+        }
+    ]
 }

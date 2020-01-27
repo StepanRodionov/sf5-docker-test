@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d42f178807d38a7cf6bb4059ccde936",
+    "content-hash": "d53798ab784f44c23e8656cf09d322d4",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1845,6 +1845,27 @@
                 "psr-3"
             ],
             "time": "2019-11-01T11:05:21+00:00"
+        },
+        {
+            "name": "sberlogistic/editorconfig",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "ssh://git@gitlab.sblogistica.ru:7999/sberlogistic/php/editorconfig.git",
+                "reference": "26b9bd9aab0922b8702ea934ab9b23475b9df63f"
+            },
+            "type": "library",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Solovov Dmitry",
+                    "email": "Solovov.Dm.A@sberbank.ru"
+                }
+            ],
+            "description": "Own codestyle for editors",
+            "time": "2020-01-27T08:26:24+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
